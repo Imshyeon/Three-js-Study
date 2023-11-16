@@ -14,3 +14,6 @@
 
     - 장면만들기 결과
      ![img](02_basic/image1.png)
+
+    - mesh 결과
+     ![Alt text](image.png)
