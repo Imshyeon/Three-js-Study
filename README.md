@@ -95,3 +95,11 @@
 
 
 ## 9. 09_fog
+1. Fog : 가까운 정도를 설정
+2. FogExp2 : density를 설정. max=1 이고 조금 더 자연스러운 느낌
+
+
+## 10. 10_skybox
+1. 3차원 공간 : 정육면체를 엄청나게 키워서 각 면의 이미지를 결합하여 공간을 만듦.
+2. opengameart.org 참고 => 하늘 사진
+3. `skyMaterial.side = THREE.BackSide`를 하면 안쪽에 material을 적용. 
