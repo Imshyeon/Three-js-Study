@@ -5,6 +5,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // 장면
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xeeeeee);
+const axesHelper = new THREE.AxesHelper(5)
+scene.add(axesHelper)
 
 // 카메라
 const camera = new THREE.PerspectiveCamera(
