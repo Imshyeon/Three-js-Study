@@ -38,11 +38,11 @@ scene.add(ambientLight)
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
 directionalLight.position.set(-0.5,1.5,-0.5) // 빛이 우측으로 이동
 const dlHelper = new THREE.DirectionalLightHelper(directionalLight, 0.5, 0x0000ff)
-scene.add(dlHelper)
-scene.add(directionalLight)
-directionalLight.castShadow = true; // 그림자 O
-directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
-directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
+// scene.add(dlHelper)
+// scene.add(directionalLight)
+// directionalLight.castShadow = true; // 그림자 O
+// directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
+// directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
 
 
 // 3. HemisphereLight
@@ -54,8 +54,9 @@ const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0xff0000, 1)
 const pointLight = new THREE.PointLight(0xffffff,1)
 const plHelper = new THREE.PointLightHelper(pointLight, 0.5)
 pointLight.position.set(-1,0.5,0.5)
-// scene.add(pointLight)
-// scene.add(plHelper)
+scene.add(pointLight)
+scene.add(plHelper)
+pointLight.castShadow = true;
 
 
 // 5. RectAreaLight
