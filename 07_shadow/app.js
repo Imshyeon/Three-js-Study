@@ -43,6 +43,7 @@ scene.add(directionalLight)
 directionalLight.castShadow = true; // 그림자 O
 directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
 directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
+directionalLight.shadow.radius = 8; // 그림자에 블러 처리
 
 
 // 3. HemisphereLight
