@@ -11,7 +11,7 @@ const near = 0.1;
 const far = 1000;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0,1,2)
+camera.position.set(0,2,1.8)
 camera.lookAt(new THREE.Vector3(0,0,0)); // 카메라가 위치가 어디든 해당 방향을 보고 있게 함.
 
 // 렌더러
@@ -36,13 +36,13 @@ scene.add(ambientLight)
 
 // 2. DirectionalLight
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
-directionalLight.position.set(-0.5,1.5,-0.5) // 빛이 우측으로 이동
+directionalLight.position.set(-1.5, 2 ,1) 
 const dlHelper = new THREE.DirectionalLightHelper(directionalLight, 0.5, 0x0000ff)
-// scene.add(dlHelper)
-// scene.add(directionalLight)
-// directionalLight.castShadow = true; // 그림자 O
-// directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
-// directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
+scene.add(dlHelper)
+scene.add(directionalLight)
+directionalLight.castShadow = true; // 그림자 O
+directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
+directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
 
 
 // 3. HemisphereLight
@@ -69,24 +69,35 @@ rectAreaLight.lookAt(0,0,0) // 0,0,0을 향해 빛을 쏨
 
 // 6. SpotLight
 const spotLight = new THREE.SpotLight(0xffffff,0.5)
-scene.add(spotLight)
-spotLight.castShadow = true; // 그림자 O
+// scene.add(spotLight)
+// spotLight.castShadow = true; // 그림자 O
 
 
 // 도형 추가
-const geometry = new THREE.SphereGeometry(0.5, 32, 16); 
+// const geometry = new THREE.SphereGeometry(0.5, 32, 16); 
 // const geometry = new THREE.IcosahedronGeometry(0.5, 0); 
-// const geometry = new THREE.ConeGeometry(0.4, 0.7, 6); 
+const geometry = new THREE.ConeGeometry(0.4, 0.7, 6); 
 const material = new THREE.MeshStandardMaterial({
     color: 0x79E5CB,
 })
 const cube = new THREE.Mesh(geometry, material)
 cube.rotation.y = 0.5;
-cube.position.y = 0.2;
+cube.position.y = 0.5;
 scene.add(cube)
+
+const geometry2 = new THREE.ConeGeometry(0.4, 0.7, 6); 
+const material2 = new THREE.MeshStandardMaterial({
+    color: 0x79E5CB,
+})
+const cube2 = new THREE.Mesh(geometry2, material2)
+cube2.position.set(-0.8,1,0.5);
+scene.add(cube2)
 
 // castShadow
 cube.castShadow = true;
+cube2.castShadow = true;
+
+cube.receiveShadow = true; // 앞의 도형의 그림자를 또 받는다..!
 
 // 바닥 추가
 const planeGeoemtry = new THREE.PlaneGeometry(20,20,1,1);
