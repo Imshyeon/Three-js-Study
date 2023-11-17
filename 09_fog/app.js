@@ -9,7 +9,7 @@ const FloorColor = 0x555555;
 // 장면
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(FogColor);
-scene.fog = new THREE.Fog(FogColor, 2, 8)
+scene.fog = new THREE.Fog(FogColor, 1, 8)
 
 // 카메라
 const fov = 120; // 시야각,화각
@@ -52,13 +52,13 @@ directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
 directionalLight.shadow.radius = 8; // 그림자에 블러 처리
 
 // 도형 추가
-const geometry = new THREE.SphereGeometry(0.5, 32, 16); 
+const geometry = new THREE.TorusGeometry(0.7, 0.3, 12, 80); 
 const material = new THREE.MeshStandardMaterial({
     color: objColor,
 })
 const obj = new THREE.Mesh(geometry, material)
 obj.position.z = -1;
-obj.position.y = 0.5;
+obj.position.y = 1;
 scene.add(obj)
 
 // castShadow
@@ -80,7 +80,7 @@ plane.receiveShadow = true
 
 function animate() {
 	requestAnimationFrame( animate );
-    obj.rotation.y += 0.5;
+    obj.rotation.y += 0.01;
 	controls.update();
 	renderer.render( scene, camera );
 }
