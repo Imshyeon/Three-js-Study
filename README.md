@@ -14,11 +14,13 @@
    2. Scene : 배경색, 안개 등의 요소 포함. 여러개의 3D 오브젝트와 빛들이 모인 장면.
    3. Camera : 장면을 화면에 담기 위한 카메라. 시야각, 종횡비, 카메라 시작 끝 지점, 카메라 위치 등 설정
 
-    - 장면만들기 결과
-     ![img](02_basic/image1.png)
+- 장면만들기 결과
+  
+![img](02_basic/image1.png)
 
-    - mesh 결과
-     ![Alt text](image.png)
+- mesh 결과
+
+![Alt text](image.png)
 
 
 ## 3. 03_material : 도형에 재질 추가하기
@@ -86,3 +88,6 @@
 ## 7. 07_shadow
 1. castShadow : 그림자를 만들(표현 할) 도형
 2. receiveShadow : 그림자를 받을 도형
+
+
+## 8. 08_orbit_controls
