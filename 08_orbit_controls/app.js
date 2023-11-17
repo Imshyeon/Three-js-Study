@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+console.log(OrbitControls)
 // 장면
 const scene = new THREE.Scene();
 scene.background = new THREE.Color();
