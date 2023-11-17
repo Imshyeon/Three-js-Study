@@ -54,9 +54,9 @@ const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0xff0000, 1)
 const pointLight = new THREE.PointLight(0xffffff,1)
 const plHelper = new THREE.PointLightHelper(pointLight, 0.5)
 pointLight.position.set(-1,0.5,0.5)
-scene.add(pointLight)
-scene.add(plHelper)
-pointLight.castShadow = true;
+// scene.add(pointLight)
+// scene.add(plHelper)
+// pointLight.castShadow = true; //그림자 O
 
 
 // 5. RectAreaLight
@@ -64,11 +64,13 @@ const rectAreaLight = new THREE.RectAreaLight(0xffffff, 2, 1, 0.5)
 // scene.add(rectAreaLight)
 rectAreaLight.position.set(0.5,0.5,1)
 rectAreaLight.lookAt(0,0,0) // 0,0,0을 향해 빛을 쏨
+// rectAreaLight.castShadow = true; // 그림자 X
 
 
 // 6. SpotLight
 const spotLight = new THREE.SpotLight(0xffffff,0.5)
-// scene.add(spotLight)
+scene.add(spotLight)
+spotLight.castShadow = true; // 그림자 O
 
 
 // 도형 추가
