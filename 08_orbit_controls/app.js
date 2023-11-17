@@ -25,10 +25,13 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// Orbit Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.update()
+
+
 // 그림자 추가
 renderer.shadowMap.enabled = true // 렌더러 자체에 그림자 추가하겠다!
-
-
 
 // 빛
 // 1. AmbientLight
@@ -117,16 +120,12 @@ scene.add(plane)
 plane.receiveShadow = true
 
 
-function render(time) {
-    time *= 0.0005;  // convert time to seconds
-
-    cube.rotation.y = time;
-
-    renderer.render(scene, camera);
-
-    requestAnimationFrame(render);
+function animate() {
+	requestAnimationFrame( animate );
+	controls.update();
+	renderer.render( scene, camera );
 }
-requestAnimationFrame(render);
+animate();
 
 // 반응형 처리
 function onWindowResize() {

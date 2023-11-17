@@ -91,3 +91,4 @@
 
 
 ## 8. 08_orbit_controls
+1. Orbit Controls는 카메라 세팅 이후에 설정을 해줘야 한다.
