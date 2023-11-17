@@ -9,7 +9,8 @@ const FloorColor = 0x555555;
 // 장면
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(FogColor);
-scene.fog = new THREE.Fog(FogColor, 1, 8)
+// scene.fog = new THREE.Fog(FogColor, 1, 8)
+scene.fog = new THREE.FogExp2(FogColor, 0.5)
 
 // 카메라
 const fov = 120; // 시야각,화각
