@@ -125,6 +125,8 @@ plane.receiveShadow = true
 
 function animate() {
 	requestAnimationFrame( animate );
+    cube.rotation.y += 0.5;
+    cube2.rotation.x -= 0.01;
 	controls.update();
 	renderer.render( scene, camera );
 }
