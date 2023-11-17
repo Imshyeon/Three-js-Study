@@ -27,6 +27,9 @@ document.body.appendChild(renderer.domElement);
 
 // Orbit Controls
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.minDistance = 2; // 마우스 휠로 조작 시 줌인 최소값
+controls.maxDistance = 7; // 마우스 휠로 조작 시 줌아웃 최소값
+controls.maxPolarAngle = Math.PI / 2; // 각도 제한 => 보기 적당한 위치에서 더이상 각도가 넘어지 않게 함.
 controls.update()
 
 
