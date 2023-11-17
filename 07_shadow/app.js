@@ -22,20 +22,27 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// 그림자 추가
+renderer.shadowMap.enabled = true // 렌더러 자체에 그림자 추가하겠다!
+
 
 
 // 빛
 // 1. AmbientLight
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambientLight)
+// ambientLight.castShadow = true; // 그림자 적용되지 않음..!
 
 
 // 2. DirectionalLight
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
-directionalLight.position.set(1,1,1) // 빛이 우측으로 이동
+directionalLight.position.set(-0.5,1.5,-0.5) // 빛이 우측으로 이동
 const dlHelper = new THREE.DirectionalLightHelper(directionalLight, 0.5, 0x0000ff)
-// scene.add(dlHelper)
-// scene.add(directionalLight)
+scene.add(dlHelper)
+scene.add(directionalLight)
+directionalLight.castShadow = true; // 그림자 O
+directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
+directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
 
 
 // 3. HemisphereLight
@@ -75,6 +82,8 @@ cube.rotation.y = 0.5;
 cube.position.y = 0.2;
 scene.add(cube)
 
+// castShadow
+cube.castShadow = true;
 
 // 바닥 추가
 const planeGeoemtry = new THREE.PlaneGeometry(20,20,1,1);
@@ -85,6 +94,9 @@ const plane = new THREE.Mesh(planeGeoemtry, planeMaterial);
 plane.rotation.x = -0.5 * Math.PI;
 plane.position.y = -0.5;
 scene.add(plane)
+
+// receiveShadow
+plane.receiveShadow = true
 
 
 function render(time) {
