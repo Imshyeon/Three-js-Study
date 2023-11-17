@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Fog</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 렌더링 방법2 -->
+    <canvas id="app"></canvas>
+
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+        }
+        }
+    </script>
+    <!-- 타입 : 모듈, 속성 : defer (defer 추가 = true, 삭제 = false) -->
+    <!-- defer : 파싱하는 동안 필요한 자바스크립트 파일을 잡아놓고 html이 파싱이 완료한 후에 사용자에게 페이지를 보여줌 -> 자바스크립트 실행 -->
+    <script type="module" src="./app.js" defer></script>
+</body>
+
+</html>
