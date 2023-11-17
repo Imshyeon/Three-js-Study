@@ -81,3 +81,8 @@
 4. PointLight : 전구같은 느낌
 5. RectAreaLight
 6. SpotLight
+
+
+## 7. 07_shadow
+1. castShadow : 그림자를 만들(표현 할) 도형
+2. receiveShadow : 그림자를 받을 도형
