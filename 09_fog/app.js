@@ -2,10 +2,14 @@ import * as THREE from 'three';
 
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-console.log(OrbitControls)
+const FogColor = 0x004fff;
+const objColor = 0xffffff;
+const FloorColor = 0x555555;
+
 // 장면
 const scene = new THREE.Scene();
-scene.background = new THREE.Color();
+scene.background = new THREE.Color(FogColor);
+scene.fog = new THREE.Fog(FogColor, 2, 8)
 
 // 카메라
 const fov = 120; // 시야각,화각
@@ -36,13 +40,6 @@ controls.update()
 // 그림자 추가
 renderer.shadowMap.enabled = true // 렌더러 자체에 그림자 추가하겠다!
 
-// 빛
-// 1. AmbientLight
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-scene.add(ambientLight)
-// ambientLight.castShadow = true; // 그림자 적용되지 않음..!
-
-
 // 2. DirectionalLight
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
 directionalLight.position.set(-1.5, 2 ,1) 
@@ -54,65 +51,23 @@ directionalLight.shadow.mapSize.width = 1024; // 그림자 해상도 높이기
 directionalLight.shadow.mapSize.height = 2048; // 그림자 해상도 높이기
 directionalLight.shadow.radius = 8; // 그림자에 블러 처리
 
-
-// 3. HemisphereLight
-const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0xff0000, 1)
-// scene.add(hemisphereLight)
-
-
-// 4. PointLight
-const pointLight = new THREE.PointLight(0xffffff,1)
-const plHelper = new THREE.PointLightHelper(pointLight, 0.5)
-pointLight.position.set(-1,0.5,0.5)
-// scene.add(pointLight)
-// scene.add(plHelper)
-// pointLight.castShadow = true; //그림자 O
-
-
-// 5. RectAreaLight
-const rectAreaLight = new THREE.RectAreaLight(0xffffff, 2, 1, 0.5)
-// scene.add(rectAreaLight)
-rectAreaLight.position.set(0.5,0.5,1)
-rectAreaLight.lookAt(0,0,0) // 0,0,0을 향해 빛을 쏨
-// rectAreaLight.castShadow = true; // 그림자 X
-
-
-// 6. SpotLight
-const spotLight = new THREE.SpotLight(0xffffff,0.5)
-// scene.add(spotLight)
-// spotLight.castShadow = true; // 그림자 O
-
-
 // 도형 추가
-// const geometry = new THREE.SphereGeometry(0.5, 32, 16); 
-// const geometry = new THREE.IcosahedronGeometry(0.5, 0); 
-const geometry = new THREE.ConeGeometry(0.4, 0.7, 6); 
+const geometry = new THREE.SphereGeometry(0.5, 32, 16); 
 const material = new THREE.MeshStandardMaterial({
-    color: 0x79E5CB,
+    color: objColor,
 })
-const cube = new THREE.Mesh(geometry, material)
-cube.rotation.y = 0.5;
-cube.position.y = 0.5;
-scene.add(cube)
-
-const geometry2 = new THREE.ConeGeometry(0.4, 0.7, 6); 
-const material2 = new THREE.MeshStandardMaterial({
-    color: 0x79E5CB,
-})
-const cube2 = new THREE.Mesh(geometry2, material2)
-cube2.position.set(-0.8,1,0.5);
-scene.add(cube2)
+const obj = new THREE.Mesh(geometry, material)
+obj.position.z = -1;
+obj.position.y = 0.5;
+scene.add(obj)
 
 // castShadow
-cube.castShadow = true;
-cube2.castShadow = true;
-
-cube.receiveShadow = true; // 앞의 도형의 그림자를 또 받는다..!
+obj.castShadow = true;
 
 // 바닥 추가
 const planeGeoemtry = new THREE.PlaneGeometry(20,20,1,1);
 const planeMaterial = new THREE.MeshStandardMaterial({
-    color: 0xffffff
+    color: FloorColor
 });
 const plane = new THREE.Mesh(planeGeoemtry, planeMaterial);
 plane.rotation.x = -0.5 * Math.PI;
@@ -125,8 +80,7 @@ plane.receiveShadow = true
 
 function animate() {
 	requestAnimationFrame( animate );
-    cube.rotation.y += 0.5;
-    cube2.rotation.x -= 0.01;
+    obj.rotation.y += 0.5;
 	controls.update();
 	renderer.render( scene, camera );
 }
